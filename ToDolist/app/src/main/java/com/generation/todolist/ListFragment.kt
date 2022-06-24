@@ -1,5 +1,6 @@
 package com.generation.todolist
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +16,7 @@ import com.generation.todolist.adapter.TaskClickListener
 import com.generation.todolist.databinding.FragmentListBinding
 import com.generation.todolist.model.Tarefa
 
-class ListFragment : Fragment(), TaskClickListener {
+class ListFragment : Fragment(), TaskClickListener{
 
     private lateinit var binding: FragmentListBinding
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -30,7 +31,7 @@ class ListFragment : Fragment(), TaskClickListener {
 
         mainViewModel.listTarefa()
 
-        val tarefaAdapter = TarefaAdapter(this,mainViewModel)
+        val tarefaAdapter = TarefaAdapter(this,mainViewModel, requireContext())
 
         binding.recyclerTarefa.adapter = tarefaAdapter
         binding.recyclerTarefa.layoutManager = LinearLayoutManager(context)
